@@ -21,12 +21,11 @@
 | ------------------ | ---------- | ------------------------------ |
 | product            | string     | null: false                    |
 | instruction        | text       | null: false                    |
-| category           | string     | null: false                    |
-| condition          | string     | null: false                    |
-| postage            | integer    | null: false                    |
-| category           | string     | null: false                    |
-| ship_source        | string     | null: false                    |
-| ship_period        | string     | null: false                    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| postage_id         | integer    | null: false                    |
+| ship_source_id     | integer    | null: false                    |
+| ship_period_id     | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
