@@ -10,9 +10,7 @@
 | zenkaku_last_name  | string  | null: false         |
 | kana_first_name    | string  | null: false         |
 | kana_last_name     | string  | null: false         |
-| birth_year         | integer | null: false         |
-| birth_month        | integer | null: false         |
-| birth_day          | integer | null: false         |
+| birth_day          | date    | null: false         |
 
 ### Association
 - has_many :items
