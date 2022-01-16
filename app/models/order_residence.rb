@@ -1,6 +1,6 @@
 class OrderResidence
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :post_code, :prefecture_id, :municipality, :address, :building, :phone_number
+  attr_accessor :item_id, :user_id, :post_code, :prefecture_id, :municipality, :address, :building, :phone_number, :token
 
   with_options presence: true do
     validates :item_id
@@ -9,6 +9,7 @@ class OrderResidence
     validates :municipality
     validates :address
     validates :phone_number, numericality: {only_integer: true, message: "is invalid. Input only number"}, length: { in: 10..11, message: "is too short"}
+    validates :token
   end
   validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
 
