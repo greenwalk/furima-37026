@@ -60,6 +60,11 @@ RSpec.describe OrderResidence, type: :model do
         @order_residence.valid?
         expect(@order_residence.errors.full_messages).to include("Phone number is too short")
       end
+      it "tokenが空では登録できないこと" do
+        @order_residence.token = nil
+        @order_residence.valid?
+        expect(@order_residence.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
   
