@@ -20,16 +20,19 @@ class OrdersController < ApplicationController
   end
 
   private
+
   def set_item
     @item = Item.find(params[:item_id])
   end
 
   def order_params
-    params.require(:order_residence).permit(:post_code, :prefecture_id, :municipality, :address, :building, :phone_number).merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
+    params.require(:order_residence).permit(:post_code, :prefecture_id, :municipality, :address, :building, :phone_number).merge(
+      item_id: params[:item_id], user_id: current_user.id, token: params[:token]
+    )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: order_params[:token],
@@ -38,7 +41,7 @@ class OrdersController < ApplicationController
   end
 
   def redirect_for_sold_out
-      redirect_to root_path unless @item.order == nil
+    redirect_to root_path unless @item.order.nil?
   end
 
   def move_to_index

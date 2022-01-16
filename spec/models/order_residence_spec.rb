@@ -28,7 +28,7 @@ RSpec.describe OrderResidence, type: :model do
       it '郵便番号は「3桁ハイフン4桁」の半角文字列でなければ保存できないこと' do
         @order_residence.post_code = '1234567'
         @order_residence.valid?
-        expect(@order_residence.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@order_residence.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it 'prefectureが空だと保存できないこと' do
         @order_residence.prefecture_id = 1
@@ -53,19 +53,18 @@ RSpec.describe OrderResidence, type: :model do
       it 'phone_numberに半角数値以外が含まれると保存できないこと' do
         @order_residence.phone_number = '０１２３４５６７８９０'
         @order_residence.valid?
-        expect(@order_residence.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@order_residence.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
       it 'phone_numberが9文字以下だと保存できないこと' do
         @order_residence.phone_number = '12345678'
         @order_residence.valid?
-        expect(@order_residence.errors.full_messages).to include("Phone number is too short")
+        expect(@order_residence.errors.full_messages).to include('Phone number is too short')
       end
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @order_residence.token = nil
         @order_residence.valid?
         expect(@order_residence.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
-  
 end
