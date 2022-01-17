@@ -60,11 +60,32 @@ RSpec.describe OrderResidence, type: :model do
         @order_residence.valid?
         expect(@order_residence.errors.full_messages).to include('Phone number is too short')
       end
+      it 'phone_numberが12文字以下だと保存できないこと' do
+        @order_residence.phone_number = '012345678901'
+        @order_residence.valid?
+        expect(@order_residence.errors.full_messages).to include('Phone number is too short')
+      end
       it 'tokenが空では登録できないこと' do
         @order_residence.token = nil
         @order_residence.valid?
         expect(@order_residence.errors.full_messages).to include("Token can't be blank")
       end
+      it 'userがひもづいていないと購入できない' do
+        @order_residence.user_id = nil
+        @order_residence.valid?
+        expect(@order_residence.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemがひもづいていないと購入できない' do
+        @order_residence.item_id = nil
+        @order_residence.valid?
+        expect(@order_residence.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 end
+# ■電話番号 
+# ・電話番号が12桁以上では購入できない
+# ■購入者情報
+# ・userが紐付いていなければ購入できない
+# ■商品情報
+# ・itemが紐付いていなければ購入できない"						
